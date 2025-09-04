@@ -400,7 +400,7 @@ function App() {
           Savollar O'yini
         </h1>
         <p className="text-xl md:text-2xl text-gray-300">
-          Jamoalar uchun savollar o'yini
+          Jamolar uchun savollar o'yini
         </p>
       </div>
 
