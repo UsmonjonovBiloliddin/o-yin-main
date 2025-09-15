@@ -3,181 +3,314 @@ import React, { useState, useEffect } from "react";
 // Barcha savollar uchun bir xil ball
 const UNIFORM_POINTS = 20;
 // "Super Savol" uchun 1,5 baravar ko'proq ball
-const POWER_POINTS = Math.round(UNIFORM_POINTS * 1.5);
+const POWER_POINTS = Math.round(UNIFORM_POINTS * 2);
 
 // O'zbek tilidagi savollar va topshiriqlar
+
 const allQuestions = [
-  // Editable Poly
+  // ========== 3ds Max Asoslari (1–12) ==========
   {
     id: 1,
     type: "quiz",
-    question: "Editable Poly rejimida qaysi darajalar bilan ishlash mumkin?",
-    options: ["Vertex, Edge, Border, Polygon, Element", "Line, Circle, Arc", "Box, Sphere, Cylinder", "Layer, Group, Object"],
-    answer: "Vertex, Edge, Border, Polygon, Element",
+    question: "3ds Max’da gizmo nima vazifani bajaradi?",
+    options: [
+      "Obyektni rangini o‘zgartiradi",
+      "Transformatsiya (Move, Rotate, Scale) boshqaruvini beradi",
+      "Fonly yoritish uchun ishlatiladi",
+      "Material Editor oynasini ochadi",
+    ],
+    answer: "Transformatsiya (Move, Rotate, Scale) boshqaruvini beradi",
     points: UNIFORM_POINTS,
   },
   {
     id: 2,
     type: "quiz",
-    question: "Editable Poly rejimida yuzalarni yumaloqlash uchun qaysi amal ishlatiladi?",
-    options: ["Bevel", "Chamfer", "Extrude", "Slice"],
-    answer: "Chamfer",
+    question: "Modifier Stack nima uchun kerak?",
+    options: [
+      "Render tezligini oshirish uchun",
+      "Obyektga qilingan o‘zgarishlarni qatlamlar shaklida boshqarish uchun",
+      "Fayl hajmini kichraytirish uchun",
+      "Faqat material qo‘shish uchun",
+    ],
+    answer: "Obyektga qilingan o‘zgarishlarni qatlamlar shaklida boshqarish uchun",
     points: UNIFORM_POINTS,
   },
-
-  // Editable Spline
   {
     id: 3,
     type: "quiz",
-    question: "Editable Spline qaysi shakl asosida yaratiladi?",
-    options: ["Spline chiziqlar", "Mesh obyektlar", "NURBS", "Patch tarmoqlar"],
-    answer: "Spline chiziqlar",
+    question: "Editable Poly’da ‘Vertex’, ‘Edge’, ‘Border’, ‘Polygon’, ‘Element’ darajalari nimani bildiradi?",
+    options: [
+      "Faqat tekstura turlari",
+      "Obyektni turli darajalarda tahrirlash imkoniyatlari",
+      "Shortcut buyruqlari",
+      "Render sozlamalari",
+    ],
+    answer: "Obyektni turli darajalarda tahrirlash imkoniyatlari",
     points: UNIFORM_POINTS,
   },
   {
     id: 4,
     type: "quiz",
-    question: "Spline'ni 3D obyektga aylantirish uchun qaysi modifikator ishlatiladi?",
-    options: ["Extrude", "Lathe", "Bevel Profile", "Hammasi"],
-    answer: "Hammasi",
+    question: "UVW Map modifier nima qiladi?",
+    options: [
+      "Obyektga fizik material qo‘shadi",
+      "Obyektni o‘lchamini o‘zgartiradi",
+      "Obyekt yuzasiga tekstura koordinatalarini joylashtiradi",
+      "Faqat yoritish bilan bog‘liq",
+    ],
+    answer: "Obyekt yuzasiga tekstura koordinatalarini joylashtiradi",
     points: UNIFORM_POINTS,
   },
-
-  // Modifikatorlar
   {
     id: 5,
     type: "quiz",
-    question: "Bend modifikatori nima qiladi?",
-    options: ["Obyektni bukadi", "Obyektni aylantiradi", "Obyektni cho'zadi", "Obyektni bo‘yaydi"],
-    answer: "Obyektni bukadi",
+    question: "Spline va Mesh o‘rtasidagi asosiy farq nima?",
+    options: [
+      "Spline — 2D chiziq, Mesh — 3D geometriya",
+      "Ikkalasi ham bir xil",
+      "Spline faqat modifierlarda ishlaydi",
+      "Mesh faqat animatsiya uchun",
+    ],
+    answer: "Spline — 2D chiziq, Mesh — 3D geometriya",
     points: UNIFORM_POINTS,
   },
   {
     id: 6,
     type: "quiz",
-    question: "Twist modifikatori obyektni qanday o‘zgartiradi?",
-    options: ["Aylantiradi", "Burab o‘giradi", "Cho‘zadi", "Kesib tashlaydi"],
-    answer: "Burab o‘giradi",
+    question: "3ds Max’da Pivot Point nima vazifani bajaradi?",
+    options: [
+      "Renderda material sifatini belgilaydi",
+      "Obyektning aylanish va masshtablash markazini belgilaydi",
+      "Shortcut klaviatura buyruqlarini saqlaydi",
+      "Nur manbaini yoqadi",
+    ],
+    answer: "Obyektning aylanish va masshtablash markazini belgilaydi",
     points: UNIFORM_POINTS,
   },
   {
     id: 7,
     type: "quiz",
-    question: "Noise modifikatori nima uchun ishlatiladi?",
-    options: ["Tasodifiy notekisliklar hosil qilish", "Rang berish", "Yorug‘lik qo‘shish", "Animatsiya qilish"],
-    answer: "Tasodifiy notekisliklar hosil qilish",
+    question: "Chamfer operatsiyasi nima qiladi?",
+    options: [
+      "Obyektni materialini silliqlaydi",
+      "Burchaklarni yumaloqlaydi yoki qo‘shimcha qirra hosil qiladi",
+      "Poligonlarni avtomatik o‘chiradi",
+      "Obyektni vertikal aylantiradi",
+    ],
+    answer: "Burchaklarni yumaloqlaydi yoki qo‘shimcha qirra hosil qiladi",
     points: UNIFORM_POINTS,
   },
   {
     id: 8,
     type: "quiz",
-    question: "Ripple modifikatori qanday effekt beradi?",
-    options: ["To‘lqin hosil qiladi", "Buradi", "Bukadi", "Parchalab yuboradi"],
-    answer: "To‘lqin hosil qiladi",
+    question: "TurboSmooth va MeshSmooth farqi nimada?",
+    options: [
+      "TurboSmooth tezroq va aniqroq subdiv qiladi",
+      "MeshSmooth faqat spline’da ishlaydi",
+      "TurboSmooth faqat renderda ko‘rinadi",
+      "Ikkalasi ham bir xil",
+    ],
+    answer: "TurboSmooth tezroq va aniqroq subdiv qiladi",
     points: UNIFORM_POINTS,
   },
   {
     id: 9,
     type: "quiz",
-    question: "Wave modifikatori qaysi effektni beradi?",
-    options: ["Uzoq cho‘zadi", "Yassi to‘lqin hosil qiladi", "Buradi", "Kesadi"],
-    answer: "Yassi to‘lqin hosil qiladi",
+    question: "3ds Max’dagi Slate Material Editor nimasi bilan farqlanadi?",
+    options: [
+      "Faqat eski versiyalarda ishlaydi",
+      "Materiallarni node-based tarzda boshqaradi",
+      "Materiallarni avtomatik yaratadi",
+      "Shortcutlarni ko‘rsatadi",
+    ],
+    answer: "Materiallarni node-based tarzda boshqaradi",
     points: UNIFORM_POINTS,
   },
   {
     id: 10,
     type: "quiz",
-    question: "Extrude modifikatori qanday ishlaydi?",
-    options: ["2D shakldan 3D obyekt yaratadi", "Obyektni aylantiradi", "Obyektni siljitadi", "Obyektni bo‘lish uchun"],
-    answer: "2D shakldan 3D obyekt yaratadi",
+    question: "Viewport Shading’da ‘Wireframe’ rejimi nima qiladi?",
+    options: [
+      "Faqat materialni ko‘rsatadi",
+      "Faqat chiziq (qirralar) ko‘rinishini chiqaradi",
+      "Renderni real vaqt ko‘rsatadi",
+      "Shortcutlarni faollashtiradi",
+    ],
+    answer: "Faqat chiziq (qirralar) ko‘rinishini chiqaradi",
     points: UNIFORM_POINTS,
   },
   {
     id: 11,
     type: "quiz",
-    question: "Lathe modifikatori qanday obyekt hosil qiladi?",
-    options: ["Aylanish bo‘yicha simmetrik obyekt", "Cho‘zilgan obyekt", "Burilgan obyekt", "Kesilgan obyekt"],
-    answer: "Aylanish bo‘yicha simmetrik obyekt",
+    question: "‘Target Camera’ va ‘Free Camera’ farqi nimada?",
+    options: [
+      "Target Camera fokus nuqtasiga qaratiladi, Free Camera esa erkin joylashadi",
+      "Free Camera faqat renderda ishlaydi",
+      "Target Camera animatsiya qilinmaydi",
+      "Ikkalasi ham bir xil",
+    ],
+    answer: "Target Camera fokus nuqtasiga qaratiladi, Free Camera esa erkin joylashadi",
     points: UNIFORM_POINTS,
   },
   {
     id: 12,
     type: "quiz",
-    question: "Lattice modifikatori qaysi effektni beradi?",
-    options: ["Spline’ni 3D ramkaga aylantiradi", "Spline’ni cho‘zadi", "Spline’ni bukadi", "Spline’ni animatsiya qiladi"],
-    answer: "Spline’ni 3D ramkaga aylantiradi",
+    question: "V-Ray’da ‘Global Illumination (GI)’ nima vazifa bajaradi?",
+    options: [
+      "Materiallarni avtomatik yaratadi",
+      "Obyektlar orasidagi yorug‘lik qaytishini hisoblaydi",
+      "Faqat fon rangini o‘zgartiradi",
+      "Shortcutlarni belgilaydi",
+    ],
+    answer: "Obyektlar orasidagi yorug‘lik qaytishini hisoblaydi",
     points: UNIFORM_POINTS,
   },
+
+  // ========== Murakkabroq (13–20) ==========
   {
     id: 13,
     type: "quiz",
-    question: "Bevel Profile modifikatori qanday ishlaydi?",
-    options: ["Spline’ni boshqa shakl bo‘yicha ekstruziya qiladi", "Spline’ni buradi", "Spline’ni kesadi", "Spline’ni bo‘yoqlaydi"],
-    answer: "Spline’ni boshqa shakl bo‘yicha ekstruziya qiladi",
+    question: "3ds Max’da ‘Batch Render’ qachon foydali?",
+    options: [
+      "Bir nechta kamera yoki sahnani ketma-ket render qilishda",
+      "Faylni kichraytirishda",
+      "Obyektni silliqlashda",
+      "Faqat V-Ray uchun",
+    ],
+    answer: "Bir nechta kamera yoki sahnani ketma-ket render qilishda",
     points: UNIFORM_POINTS,
   },
   {
     id: 14,
     type: "quiz",
-    question: "Roof Generator plaginining vazifasi nima?",
-    options: ["Tom konstruktsiyalarini avtomatik yaratadi", "Devorlarni chizadi", "Deraza va eshik hosil qiladi", "Spline’ni meshga aylantiradi"],
-    answer: "Tom konstruktsiyalarini avtomatik yaratadi",
+    question: "Normal Map nima uchun ishlatiladi?",
+    options: [
+      "Materialga yorug‘lik aksini realroq ko‘rsatish uchun",
+      "Modelning umumiy shaklini o‘zgartirish uchun",
+      "Faylni kichraytirish uchun",
+      "Faqat animatsiyada",
+    ],
+    answer: "Materialga yorug‘lik aksini realroq ko‘rsatish uchun",
     points: UNIFORM_POINTS,
   },
-
-  // V-Ray
   {
     id: 15,
     type: "quiz",
-    question: "V-Ray renderer qaysi maqsadda ishlatiladi?",
-    options: ["Realistik rendering qilish uchun", "Obyektni model qilish uchun", "Spline yaratish uchun", "Animatsiya yaratish uchun"],
-    answer: "Realistik rendering qilish uchun",
+    question: "Displacement Map va Bump Map farqi nimada?",
+    options: [
+      "Bump faqat vizual ko‘rsatadi, Displacement esa real geometriya hosil qiladi",
+      "Displacement tezroq ishlaydi",
+      "Bump faqat animatsiya uchun",
+      "Ikkalasi ham bir xil",
+    ],
+    answer: "Bump faqat vizual ko‘rsatadi, Displacement esa real geometriya hosil qiladi",
     points: UNIFORM_POINTS,
   },
   {
     id: 16,
     type: "quiz",
-    question: "V-Ray material slotida eng ko‘p ishlatiladigan material turi qaysi?",
-    options: ["V-Ray Mtl", "Multi/Sub-Object", "Standard Material", "Physical Material"],
-    answer: "V-Ray Mtl",
+    question: "Arnold Renderer’da ‘Subdivision Iterations’ parametri nima qiladi?",
+    options: [
+      "Material rangini o‘zgartiradi",
+      "Meshni bo‘lish orqali silliqlash darajasini belgilaydi",
+      "Nur kuchini oshiradi",
+      "Faqat GPU’da ishlaydi",
+    ],
+    answer: "Meshni bo‘lish orqali silliqlash darajasini belgilaydi",
     points: UNIFORM_POINTS,
   },
   {
     id: 17,
     type: "quiz",
-    question: "V-Ray Light qaysi afzallikka ega?",
-    options: ["Realistik yorug‘lik beradi", "Faqat sun’iy yorug‘lik yaratadi", "Obyektni cho‘zadi", "Materialni tahrirlaydi"],
-    answer: "Realistik yorug‘lik beradi",
+    question: "‘Unwrap UVW’ modifierining vazifasi nima?",
+    options: [
+      "Obyektni ko‘chirish uchun",
+      "Tekstura koordinatalarini qo‘lda tahrirlash uchun",
+      "Fonni o‘zgartirish uchun",
+      "Materialni yo‘qotish uchun",
+    ],
+    answer: "Tekstura koordinatalarini qo‘lda tahrirlash uchun",
     points: UNIFORM_POINTS,
   },
-
-  // Challenge
   {
     id: 18,
-    type: "challenge",
-    challenge: "1 daqiqa ichida 3D obyektni model qiling (masalan: stul yoki stol).",
+    type: "quiz",
+    question: "Particle System (masalan, PArray, PF Source) nima uchun ishlatiladi?",
+    options: [
+      "Faqat material silliqlash uchun",
+      "Portlash, tutun, yomg‘ir kabi effektlarni yaratish uchun",
+      "Obyektni pivotini o‘zgartirish uchun",
+      "Render sozlamalarini o‘zgartirish uchun",
+    ],
+    answer: "Portlash, tutun, yomg‘ir kabi effektlarni yaratish uchun",
     points: UNIFORM_POINTS,
   },
   {
     id: 19,
-    type: "challenge",
-    challenge: "30 soniyada 5 ta modifikator nomini sanab bering!",
+    type: "quiz",
+    question: "3ds Max’da ‘Keyframe’ nima uchun kerak?",
+    options: [
+      "Materialni tezroq yuklash uchun",
+      "Animatsiyada vaqt bo‘yicha obyekt holatini saqlash uchun",
+      "Faylni kichraytirish uchun",
+      "Faqat spline’da ishlaydi",
+    ],
+    answer: "Animatsiyada vaqt bo‘yicha obyekt holatini saqlash uchun",
+    points: UNIFORM_POINTS,
+  },
+  {
+    id: 20,
+    type: "quiz",
+    question: "Render Settings’da ‘Sampling’ parametri qaysi jihatga ta’sir qiladi?",
+    options: [
+      "Poligon soniga",
+      "Rasm sifatiga va shovqinga",
+      "Material rangiga",
+      "Shortcut tezligiga",
+    ],
+    answer: "Rasm sifatiga va shovqinga",
     points: UNIFORM_POINTS,
   },
 
-  // Power savol
+  // === CHALLENGE (21–24) ===
   {
-    id: 20,
+    id: 21,
+    type: "challenge",
+    question: "30 soniyada 10 ta modifier sanab bering",
+    points: UNIFORM_POINTS * 2,
+  },
+  {
+    id: 22,
+    type: "challenge",
+    question: "Raqib jamoa tanlagan oddiy obyektni 1 daqiqa ichida Editable Poly qilib, unga kamida 3 xil operatsiya qo‘llang (masalan, extrude, bevel, chamfer)",
+    points: UNIFORM_POINTS * 2,
+  },
+  {
+    id: 23,
+    type: "challenge",
+    question: "30 soniyada render motorlaridan kamida 5 tasini aytib bering",
+    points: UNIFORM_POINTS * 2,
+  },
+  {
+    id: 24,
+    type: "challenge",
+    question: "Material Editor oynasida 1 daqiqada 3 xil material yarating (masalan: shisha, metall, yog‘och)",
+    points: UNIFORM_POINTS * 2,
+  },
+
+  // === POWER (25) ===
+  {
+    id: 25,
     type: "power",
-    question: "3ds Max’da Lathe va Extrude modifikatorlari o‘rtasidagi asosiy farq nima?",
+    question: "Displacement, Bump va Normal Map o‘rtasidagi to‘g‘ri ta’rifni toping:",
     options: [
-      "Lathe aylanish bo‘yicha obyekt yaratadi, Extrude esa 2D shakldan cho‘zib 3D obyekt hosil qiladi",
-      "Ikkalasi ham bir xil ishlaydi",
-      "Extrude obyektni buradi, Lathe esa tekislashtiradi",
-      "Lathe faqat spline’larni kesib tashlaydi, Extrude esa spline’ni aylantiradi"
+      "Bump faqat yorug‘lik effektida ko‘rinadi; Normal rangli yo‘nalishlar orqali ko‘rsatadi; Displacement esa haqiqiy geometriya qo‘shadi",
+      "Uchalasining farqi yo‘q",
+      "Normal faqat animatsiya uchun, boshqalari render uchun",
+      "Displacement faqat material rangini o‘zgartiradi",
     ],
-    answer: "Lathe aylanish bo‘yicha obyekt yaratadi, Extrude esa 2D shakldan cho‘zib 3D obyekt hosil qiladi",
-    points: POWER_POINTS,
+    answer: "Bump faqat yorug‘lik effektida ko‘rinadi; Normal rangli yo‘nalishlar orqali ko‘rsatadi; Displacement esa haqiqiy geometriya qo‘shadi",
+    points: UNIFORM_POINTS * 3,
   },
 ];
 
@@ -260,7 +393,6 @@ function App() {
     // "Super Savol" va "Quiz"lar uchun mantiq
     if (isCorrect) {
       if (currentQuestion.type === "power") {
-        setCurrentQuestion(null);
         setPowerModal(true);
       } else {
         const points = currentQuestion.points;
@@ -302,7 +434,7 @@ function App() {
         ? setTeam1Score((s) => s + pointsToAward)
         : setTeam2Score((s) => s + pointsToAward);
     } else {
-      activeTeam === 1
+      activeTeam === 2
         ? setTeam2Score((s) => Math.max(0, s - pointsToAward))
         : setTeam1Score((s) => Math.max(0, s - pointsToAward));
     }
@@ -400,7 +532,7 @@ function App() {
           Savollar O'yini
         </h1>
         <p className="text-xl md:text-2xl text-gray-300">
-          Jamolar uchun savollar o'yini
+          Jamoalar uchun savollar o'yini
         </p>
       </div>
 
@@ -418,7 +550,7 @@ function App() {
               {team1Name}
             </h2>
           </div>
-          <p className="text-5xl md:text-6xl font-extrabold text-center text-green-200">
+          <p className="text-5xl md:text-6xl font-extrabold text-center text-orange-600">
             {team1Score}
           </p>
         </div>
@@ -436,7 +568,7 @@ function App() {
               {team2Name}
             </h2>
           </div>
-          <p className="text-5xl md:text-6xl font-extrabold text-center text-green-200">
+          <p className="text-5xl md:text-6xl font-extrabold text-center text-orange-600">
             {team2Score}
           </p>
         </div>
@@ -454,7 +586,7 @@ function App() {
               ${
                 box.isUsed
                   ? "bg-gray-700 cursor-not-allowed text-gray-400"
-                  : " bg-[linear-gradient(127deg,rgba(0,183,255,1)_0%,rgba(62,207,190,1)_0%,rgba(34,104,224,1)_100%)] hover:bg-blue-700 hover:scale-105"
+                  : "bg-blue-600 hover:bg-blue-700 hover:scale-105"
               }
             `}
           >
@@ -503,7 +635,7 @@ function App() {
                     onClick={() =>
                       handleAnswer(option === currentQuestion.answer)
                     }
-                    className="bg-green-950 text-white rounded-xl py-3 px-6 text-lg font-semibold hover:bg-green-600 cursor-pointer transition-colors duration-200"
+                    className="bg-gray-700 text-white rounded-xl py-3 px-6 text-lg font-semibold hover:bg-gray-600 transition-colors duration-200"
                   >
                     {option}
                   </button>
