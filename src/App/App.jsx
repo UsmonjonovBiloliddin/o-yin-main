@@ -8,267 +8,271 @@ const POWER_POINTS = Math.round(UNIFORM_POINTS * 2);
 // O'zbek tilidagi savollar va topshiriqlar
 
 const allQuestions = [
-  // ========== 3ds Max Asoslari (1–12) ==========
+  // ========== TOPOLOGIYA (1–6) ==========
   {
     id: 1,
     type: "quiz",
-    question: "3ds Max’da gizmo nima vazifani bajaradi?",
+    question: "Topologiya 3D modelingda nimani anglatadi?",
     options: [
-      "Obyektni rangini o‘zgartiradi",
-      "Transformatsiya (Move, Rotate, Scale) boshqaruvini beradi",
-      "Fonly yoritish uchun ishlatiladi",
-      "Material Editor oynasini ochadi",
+      "Obyektning tashqi ko‘rinishining umumiy rangini",
+      "Poligon, qirra va vertexlarning joylashuvi va tartibini",
+      "Faqat tekstura koordinatalarini",
+      "Faqat render sifatini"
     ],
-    answer: "Transformatsiya (Move, Rotate, Scale) boshqaruvini beradi",
+    answer: "Poligon, qirra va vertexlarning joylashuvi va tartibini",
     points: UNIFORM_POINTS,
   },
   {
     id: 2,
     type: "quiz",
-    question: "Modifier Stack nima uchun kerak?",
+    question: "TurboSmooth berilganda obyekt shaklini qanday saqlash mumkin?",
     options: [
-      "Render tezligini oshirish uchun",
-      "Obyektga qilingan o‘zgarishlarni qatlamlar shaklida boshqarish uchun",
-      "Fayl hajmini kichraytirish uchun",
-      "Faqat material qo‘shish uchun",
+      "Pivotni markazlashtirish orqali",
+      "Qo‘shimcha Edge Loop qo‘shish orqali",
+      "Material Editor’da sozlash orqali",
+      "Nur manbaini qo‘shish orqali"
     ],
-    answer: "Obyektga qilingan o‘zgarishlarni qatlamlar shaklida boshqarish uchun",
+    answer: "Qo‘shimcha Edge Loop qo‘shish orqali",
     points: UNIFORM_POINTS,
   },
   {
     id: 3,
     type: "quiz",
-    question: "Editable Poly’da ‘Vertex’, ‘Edge’, ‘Border’, ‘Polygon’, ‘Element’ darajalari nimani bildiradi?",
+    question: "Conceptual modeling va Professional modeling o‘rtasidagi asosiy farq nima?",
     options: [
-      "Faqat tekstura turlari",
-      "Obyektni turli darajalarda tahrirlash imkoniyatlari",
-      "Shortcut buyruqlari",
-      "Render sozlamalari",
+      "Conceptual tezkor g‘oya uchun, Professional esa aniq va detalli model uchun",
+      "Conceptual faqat animatsiyada, Professional faqat renderda ishlatiladi",
+      "Professional modeling faqat spline asosida quriladi",
+      "Conceptual modeling faqat avtomatik vositalar bilan yaratiladi"
     ],
-    answer: "Obyektni turli darajalarda tahrirlash imkoniyatlari",
+    answer: "Conceptual tezkor g‘oya uchun, Professional esa aniq va detalli model uchun",
     points: UNIFORM_POINTS,
   },
   {
     id: 4,
     type: "quiz",
-    question: "UVW Map modifier nima qiladi?",
+    question: "Qaysi atama qirrani hosil qiluvchi yoki tortiluvchi burchakni bildiradi?",
     options: [
-      "Obyektga fizik material qo‘shadi",
-      "Obyektni o‘lchamini o‘zgartiradi",
-      "Obyekt yuzasiga tekstura koordinatalarini joylashtiradi",
-      "Faqat yoritish bilan bog‘liq",
+      "Hard edge / Soft edge",
+      "Chamfer angle",
+      "Bevel height",
+      "Field of View"
     ],
-    answer: "Obyekt yuzasiga tekstura koordinatalarini joylashtiradi",
+    answer: "Hard edge / Soft edge",
     points: UNIFORM_POINTS,
   },
   {
     id: 5,
     type: "quiz",
-    question: "Spline va Mesh o‘rtasidagi asosiy farq nima?",
+    question: "Sphere va Box elementlarini modelingda qo‘shishdan maqsad nima?",
     options: [
-      "Spline — 2D chiziq, Mesh — 3D geometriya",
-      "Ikkalasi ham bir xil",
-      "Spline faqat modifierlarda ishlaydi",
-      "Mesh faqat animatsiya uchun",
+      "Faqat materiallarni sinash uchun",
+      "Asosiy shakllardan murakkab modellar qurish uchun",
+      "Yoritish sozlamalarini tekshirish uchun",
+      "Render vaqtini kamaytirish uchun"
     ],
-    answer: "Spline — 2D chiziq, Mesh — 3D geometriya",
+    answer: "Asosiy shakllardan murakkab modellar qurish uchun",
     points: UNIFORM_POINTS,
   },
   {
     id: 6,
     type: "quiz",
-    question: "3ds Max’da Pivot Point nima vazifani bajaradi?",
+    question: "Topologiya tahlilida Rapid Tools vositasi qaysi vazifa uchun ishlatiladi?",
     options: [
-      "Renderda material sifatini belgilaydi",
-      "Obyektning aylanish va masshtablash markazini belgilaydi",
-      "Shortcut klaviatura buyruqlarini saqlaydi",
-      "Nur manbaini yoqadi",
+      "Obyektni pivotini sozlash uchun",
+      "Mesh yuzalarini tez tahrirlash va qo‘shimcha qirra qo‘shish uchun",
+      "Renderni tezlashtirish uchun",
+      "Fonly blueprint joylashtirish uchun"
     ],
-    answer: "Obyektning aylanish va masshtablash markazini belgilaydi",
+    answer: "Mesh yuzalarini tez tahrirlash va qo‘shimcha qirra qo‘shish uchun",
     points: UNIFORM_POINTS,
   },
+
+  // ========== MURAKKAB MODELING va RIBBON (7–12) ==========
   {
     id: 7,
     type: "quiz",
-    question: "Chamfer operatsiyasi nima qiladi?",
+    question: "3D naqsh yasashda qanday yechimlar qo‘llaniladi?",
     options: [
-      "Obyektni materialini silliqlaydi",
-      "Burchaklarni yumaloqlaydi yoki qo‘shimcha qirra hosil qiladi",
-      "Poligonlarni avtomatik o‘chiradi",
-      "Obyektni vertikal aylantiradi",
+      "Displacement Map va Array modifier",
+      "Nur manbalari va kamera sozlamalari",
+      "Faqat Material Editor",
+      "Faqat Boolean operatsiyasi"
     ],
-    answer: "Burchaklarni yumaloqlaydi yoki qo‘shimcha qirra hosil qiladi",
+    answer: "Displacement Map va Array modifier",
     points: UNIFORM_POINTS,
   },
   {
     id: 8,
     type: "quiz",
-    question: "TurboSmooth va MeshSmooth farqi nimada?",
+    question: "Shriftlardan 3D modelingda qanday foydalaniladi?",
     options: [
-      "TurboSmooth tezroq va aniqroq subdiv qiladi",
-      "MeshSmooth faqat spline’da ishlaydi",
-      "TurboSmooth faqat renderda ko‘rinadi",
-      "Ikkalasi ham bir xil",
+      "Text spline orqali 3D ob’ektga aylantirish",
+      "Faqat render uchun yozuv qo‘shish",
+      "Fonly Blueprint joylashtirish",
+      "Pivotni sozlash uchun"
     ],
-    answer: "TurboSmooth tezroq va aniqroq subdiv qiladi",
+    answer: "Text spline orqali 3D ob’ektga aylantirish",
     points: UNIFORM_POINTS,
   },
   {
     id: 9,
     type: "quiz",
-    question: "3ds Max’dagi Slate Material Editor nimasi bilan farqlanadi?",
+    question: "Ribbon panelining Modeling bo‘limi asosan nima uchun xizmat qiladi?",
     options: [
-      "Faqat eski versiyalarda ishlaydi",
-      "Materiallarni node-based tarzda boshqaradi",
-      "Materiallarni avtomatik yaratadi",
-      "Shortcutlarni ko‘rsatadi",
+      "Material sozlamalari uchun",
+      "Obyektlarni deformatsiya, kesish, birlashtirish uchun",
+      "Kamera va yoritish sozlamalari uchun",
+      "Faqat render formatini o‘zgartirish uchun"
     ],
-    answer: "Materiallarni node-based tarzda boshqaradi",
+    answer: "Obyektlarni deformatsiya, kesish, birlashtirish uchun",
     points: UNIFORM_POINTS,
   },
   {
     id: 10,
     type: "quiz",
-    question: "Viewport Shading’da ‘Wireframe’ rejimi nima qiladi?",
+    question: "Ribbon’dagi Freeform bo‘limi asosan qaysi amallarni bajaradi?",
     options: [
-      "Faqat materialni ko‘rsatadi",
-      "Faqat chiziq (qirralar) ko‘rinishini chiqaradi",
-      "Renderni real vaqt ko‘rsatadi",
-      "Shortcutlarni faollashtiradi",
+      "Interaktiv modeling va deformatsiya vositalarini",
+      "Material ranglarini sozlashni",
+      "Render sozlamalarini",
+      "Nur manbai turini tanlashni"
     ],
-    answer: "Faqat chiziq (qirralar) ko‘rinishini chiqaradi",
+    answer: "Interaktiv modeling va deformatsiya vositalarini",
     points: UNIFORM_POINTS,
   },
   {
     id: 11,
     type: "quiz",
-    question: "‘Target Camera’ va ‘Free Camera’ farqi nimada?",
+    question: "Ribbon’dagi Object Paint bo‘limining asosiy vazifasi nima?",
     options: [
-      "Target Camera fokus nuqtasiga qaratiladi, Free Camera esa erkin joylashadi",
-      "Free Camera faqat renderda ishlaydi",
-      "Target Camera animatsiya qilinmaydi",
-      "Ikkalasi ham bir xil",
+      "Tekstura bo‘yash uchun",
+      "Sahnaga obyektlarni bo‘yab joylashtirish uchun",
+      "Pivotlarni sozlash uchun",
+      "Kamera sozlash uchun"
     ],
-    answer: "Target Camera fokus nuqtasiga qaratiladi, Free Camera esa erkin joylashadi",
+    answer: "Sahnaga obyektlarni bo‘yab joylashtirish uchun",
     points: UNIFORM_POINTS,
   },
   {
     id: 12,
     type: "quiz",
-    question: "V-Ray’da ‘Global Illumination (GI)’ nima vazifa bajaradi?",
+    question: "Blueprintdan foydalanishda asosiy qadam nima?",
     options: [
-      "Materiallarni avtomatik yaratadi",
-      "Obyektlar orasidagi yorug‘lik qaytishini hisoblaydi",
-      "Faqat fon rangini o‘zgartiradi",
-      "Shortcutlarni belgilaydi",
+      "Blueprintni sahnaga joylashtirib, modelingni unga asoslash",
+      "Material sifatini oshirish",
+      "Render vaqtini qisqartirish",
+      "Fonly modifierlarni qo‘llash"
     ],
-    answer: "Obyektlar orasidagi yorug‘lik qaytishini hisoblaydi",
+    answer: "Blueprintni sahnaga joylashtirib, modelingni unga asoslash",
     points: UNIFORM_POINTS,
   },
 
-  // ========== Murakkabroq (13–20) ==========
+  // ========== DWG va INTERIOR (13–16) ==========
   {
     id: 13,
     type: "quiz",
-    question: "3ds Max’da ‘Batch Render’ qachon foydali?",
+    question: "DWG fayldan uy modelingda asosiy qadam nima?",
     options: [
-      "Bir nechta kamera yoki sahnani ketma-ket render qilishda",
-      "Faylni kichraytirishda",
-      "Obyektni silliqlashda",
-      "Faqat V-Ray uchun",
+      "2D chizmalarni import qilib 3D devorlarga aylantirish",
+      "Faqat render sozlash",
+      "Faqat Pivotni sozlash",
+      "Faqat kamera qo‘yish"
     ],
-    answer: "Bir nechta kamera yoki sahnani ketma-ket render qilishda",
+    answer: "2D chizmalarni import qilib 3D devorlarga aylantirish",
     points: UNIFORM_POINTS,
   },
   {
     id: 14,
     type: "quiz",
-    question: "Normal Map nima uchun ishlatiladi?",
+    question: "Magnitlarning 3D modelingdagi 2.5D turi nimani anglatadi?",
     options: [
-      "Materialga yorug‘lik aksini realroq ko‘rsatish uchun",
-      "Modelning umumiy shaklini o‘zgartirish uchun",
-      "Faylni kichraytirish uchun",
-      "Faqat animatsiyada",
+      "Faqat 2D obyektlarni joylashtiradi",
+      "Obyektni qisman yuzaga yopishtirish imkonini beradi",
+      "Fonly pivotni sozlaydi",
+      "Faqat teksturani ko‘rsatadi"
     ],
-    answer: "Materialga yorug‘lik aksini realroq ko‘rsatish uchun",
+    answer: "Obyektni qisman yuzaga yopishtirish imkonini beradi",
     points: UNIFORM_POINTS,
   },
   {
     id: 15,
     type: "quiz",
-    question: "Displacement Map va Bump Map farqi nimada?",
+    question: "Interyerdagi Floor Generator nimaga xizmat qiladi?",
     options: [
-      "Bump faqat vizual ko‘rsatadi, Displacement esa real geometriya hosil qiladi",
-      "Displacement tezroq ishlaydi",
-      "Bump faqat animatsiya uchun",
-      "Ikkalasi ham bir xil",
+      "Pol yuzasida realistik taxta yoki plitka yaratish",
+      "Faqat fon rangini o‘zgartirish",
+      "Render tezligini oshirish",
+      "Obyekt pivotini belgilash"
     ],
-    answer: "Bump faqat vizual ko‘rsatadi, Displacement esa real geometriya hosil qiladi",
+    answer: "Pol yuzasida realistik taxta yoki plitka yaratish",
     points: UNIFORM_POINTS,
   },
   {
     id: 16,
     type: "quiz",
-    question: "Arnold Renderer’da ‘Subdivision Iterations’ parametri nima qiladi?",
+    question: "Sweep Profile modifieri asosan qaysi jarayonda ishlatiladi?",
     options: [
-      "Material rangini o‘zgartiradi",
-      "Meshni bo‘lish orqali silliqlash darajasini belgilaydi",
-      "Nur kuchini oshiradi",
-      "Faqat GPU’da ishlaydi",
+      "Profil chiziqlar asosida 3D shakllar yaratishda",
+      "Fonly renderda material berishda",
+      "Pivotni sozlashda",
+      "Nur manbaini yoqishda"
     ],
-    answer: "Meshni bo‘lish orqali silliqlash darajasini belgilaydi",
+    answer: "Profil chiziqlar asosida 3D shakllar yaratishda",
     points: UNIFORM_POINTS,
   },
+
+  // ========== PERSPEKTIVA va V-RAY (17–20) ==========
   {
     id: 17,
     type: "quiz",
-    question: "‘Unwrap UVW’ modifierining vazifasi nima?",
+    question: "Perspective Match vositasi nima uchun ishlatiladi?",
     options: [
-      "Obyektni ko‘chirish uchun",
-      "Tekstura koordinatalarini qo‘lda tahrirlash uchun",
-      "Fonni o‘zgartirish uchun",
-      "Materialni yo‘qotish uchun",
+      "Render vaqtini o‘lchash uchun",
+      "Rasm yoki blueprintdagi perspektivaga sahnani moslashtirish uchun",
+      "Material sifatini oshirish uchun",
+      "Pivotni markazlashtirish uchun"
     ],
-    answer: "Tekstura koordinatalarini qo‘lda tahrirlash uchun",
+    answer: "Rasm yoki blueprintdagi perspektivaga sahnani moslashtirish uchun",
     points: UNIFORM_POINTS,
   },
   {
     id: 18,
     type: "quiz",
-    question: "Particle System (masalan, PArray, PF Source) nima uchun ishlatiladi?",
+    question: "Field of View (FOV) nima?",
     options: [
-      "Faqat material silliqlash uchun",
-      "Portlash, tutun, yomg‘ir kabi effektlarni yaratish uchun",
-      "Obyektni pivotini o‘zgartirish uchun",
-      "Render sozlamalarini o‘zgartirish uchun",
+      "Render tezligini belgilovchi parametr",
+      "Kamera ko‘rish burchagi",
+      "Obyekt pivot nuqtasi",
+      "Materialning shaffofligi"
     ],
-    answer: "Portlash, tutun, yomg‘ir kabi effektlarni yaratish uchun",
+    answer: "Kamera ko‘rish burchagi",
     points: UNIFORM_POINTS,
   },
   {
     id: 19,
     type: "quiz",
-    question: "3ds Max’da ‘Keyframe’ nima uchun kerak?",
+    question: "V-Ray materiallarining asosiy ustunligi nima?",
     options: [
-      "Materialni tezroq yuklash uchun",
-      "Animatsiyada vaqt bo‘yicha obyekt holatini saqlash uchun",
-      "Faylni kichraytirish uchun",
-      "Faqat spline’da ishlaydi",
+      "Fotorealistik natija berishi",
+      "Faqat tezroq render qilish",
+      "Pivotlarni sozlash imkoniyati",
+      "Fonly spline’lar uchun ishlashi"
     ],
-    answer: "Animatsiyada vaqt bo‘yicha obyekt holatini saqlash uchun",
+    answer: "Fotorealistik natija berishi",
     points: UNIFORM_POINTS,
   },
   {
     id: 20,
     type: "quiz",
-    question: "Render Settings’da ‘Sampling’ parametri qaysi jihatga ta’sir qiladi?",
+    question: "V-Ray’da Grass Generator asosan nima uchun ishlatiladi?",
     options: [
-      "Poligon soniga",
-      "Rasm sifatiga va shovqinga",
-      "Material rangiga",
-      "Shortcut tezligiga",
+      "Obyekt pivotini sozlash uchun",
+      "Realistik o‘t va mayda o‘simlik effektini yaratish uchun",
+      "Render fonini sozlash uchun",
+      "Kamerani boshqarish uchun"
     ],
-    answer: "Rasm sifatiga va shovqinga",
+    answer: "Realistik o‘t va mayda o‘simlik effektini yaratish uchun",
     points: UNIFORM_POINTS,
   },
 
@@ -276,43 +280,45 @@ const allQuestions = [
   {
     id: 21,
     type: "challenge",
-    question: "30 soniyada 10 ta modifier sanab bering",
+    question: "40 soniyada topologiyani saqlash uchun qo‘llaniladigan kamida 5 ta vositani sanab bering",
     points: UNIFORM_POINTS * 2,
   },
   {
     id: 22,
     type: "challenge",
-    question: "Raqib jamoa tanlagan oddiy obyektni 1 daqiqa ichida Editable Poly qilib, unga kamida 3 xil operatsiya qo‘llang (masalan, extrude, bevel, chamfer)",
+    question: "Berilgan blueprint asosida 2 daqiqada oddiy uy devorini hosil qiling",
     points: UNIFORM_POINTS * 2,
   },
   {
     id: 23,
     type: "challenge",
-    question: "30 soniyada render motorlaridan kamida 5 tasini aytib bering",
+    question: "1 daqiqa ichida Ribbon panelidagi Modeling bo‘limidan kamida 3 ta buyruqni ko‘rsating",
     points: UNIFORM_POINTS * 2,
   },
   {
     id: 24,
     type: "challenge",
-    question: "Material Editor oynasida 1 daqiqada 3 xil material yarating (masalan: shisha, metall, yog‘och)",
+    question: "30soniya ichida 15ta modifikator sanab bering ",
     points: UNIFORM_POINTS * 2,
   },
 
   // === POWER (25) ===
   {
-    id: 25,
-    type: "power",
-    question: "Displacement, Bump va Normal Map o‘rtasidagi to‘g‘ri ta’rifni toping:",
-    options: [
-      "Bump faqat yorug‘lik effektida ko‘rinadi; Normal rangli yo‘nalishlar orqali ko‘rsatadi; Displacement esa haqiqiy geometriya qo‘shadi",
-      "Uchalasining farqi yo‘q",
-      "Normal faqat animatsiya uchun, boshqalari render uchun",
-      "Displacement faqat material rangini o‘zgartiradi",
-    ],
-    answer: "Bump faqat yorug‘lik effektida ko‘rinadi; Normal rangli yo‘nalishlar orqali ko‘rsatadi; Displacement esa haqiqiy geometriya qo‘shadi",
-    points: UNIFORM_POINTS * 3,
-  },
+  id: 25,
+  type: "power",
+  question: "3D dasturlarda Grass Generator texnologiyasining asosiy vazifasi nima?",
+  options: [
+    "Avtomatik ravishda realizmga yaqin o't-o‘lan va maysa hosil qilish",
+    "Faqatgina material rangini yashil rangga o‘zgartirish",
+    "Render vaqtini kamaytirish uchun fonni yashirish",
+    "Geometriyani deformatsiya qilib yangi obyektlar yaratish"
+  ],
+  answer: "Avtomatik ravishda realizmga yaqin o't-o‘lan va maysa hosil qilish",
+  points: UNIFORM_POINTS * 3,
+},
 ];
+
+
 
 
 function App() {
