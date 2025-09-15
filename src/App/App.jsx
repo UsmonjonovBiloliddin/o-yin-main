@@ -277,12 +277,7 @@ const allQuestions = [
   },
 
   // === CHALLENGE (21–24) ===
-  {
-    id: 21,
-    type: "challenge",
-    question: "40 soniyada topologiyani saqlash uchun qo‘llaniladigan kamida 5 ta vositani sanab bering",
-    points: UNIFORM_POINTS * 2,
-  },
+
   {
     id: 22,
     type: "challenge",
